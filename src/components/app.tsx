@@ -75,8 +75,8 @@ export function App() {
 
   return (
     <div className="bg-slate-100 min-h-screen">
-      <main className="mx-auto max-w-5xl py-8 px-4 overflow-x-auto">
-        <div className="text-center mb-4 sticky top-0 left-0 z-10 bg-slate-100 pb-4">
+      <main className="mx-auto max-w-5xl pt-8 pb-4">
+        <div className="text-center mb-4 px-4 sticky top-0 left-0 z-10 bg-slate-100 pb-4">
           {!isDrawing ? (
             <div className="mb-2">
               <label
@@ -136,7 +136,7 @@ export function App() {
         )}
       </main>
 
-      <footer className="flex max-w-5xl p-4 mx-auto justify-center space-x-2 text-sm font-medium text-slate-500">
+      <footer className="flex max-w-5xl p-4 mx-auto justify-center text-center space-x-2 text-sm font-medium text-slate-500">
         <p>
           Images by{' '}
           <a
