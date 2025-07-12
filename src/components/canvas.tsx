@@ -65,7 +65,7 @@ export function Canvas({
         const maxX = Math.max(...xs)
         const minY = Math.min(...ys)
         const maxY = Math.max(...ys)
-        const padding = 100
+        const padding = 80
 
         canvas.width = maxX - minX + padding * 2
         canvas.height = maxY - minY + padding * 2
