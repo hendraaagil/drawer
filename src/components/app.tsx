@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react'
 import { Canvas } from './canvas'
+import { SvgDrawing } from './svg-drawing'
 import { apiBaseUrl } from '../libs/constant'
 
 interface ImageOption {
@@ -10,6 +11,8 @@ interface ImageOption {
 function toTitleCase(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 }
+
+const drawingMethod = 'svg' // 'canvas'
 
 export function App() {
   const [selectedImage, setSelectedImage] = useState<string>('')
@@ -116,12 +119,21 @@ export function App() {
             </div>
           )}
         </div>
-        <Canvas
-          selectedImage={selectedImage}
-          isDrawing={isDrawing}
-          onDrawingComplete={handleDrawingComplete}
-          onDrawingProgress={handleDrawingProgress}
-        />
+        {drawingMethod === 'svg' ? (
+          <SvgDrawing
+            selectedImage={selectedImage}
+            isDrawing={isDrawing}
+            onDrawingComplete={handleDrawingComplete}
+            onDrawingProgress={handleDrawingProgress}
+          />
+        ) : (
+          <Canvas
+            selectedImage={selectedImage}
+            isDrawing={isDrawing}
+            onDrawingComplete={handleDrawingComplete}
+            onDrawingProgress={handleDrawingProgress}
+          />
+        )}
       </main>
 
       <footer className="flex max-w-5xl p-4 mx-auto justify-center space-x-2 text-sm font-medium text-slate-500">
