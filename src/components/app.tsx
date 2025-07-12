@@ -123,6 +123,30 @@ export function App() {
           onDrawingProgress={handleDrawingProgress}
         />
       </main>
+
+      <footer className="flex max-w-5xl p-4 mx-auto justify-center space-x-2 text-sm font-medium text-slate-500">
+        <p>
+          Art by{' '}
+          <a
+            href="https://www.youtube.com/@artbycode"
+            className="text-blue-600 underline"
+            target="_blank"
+          >
+            Art by Code
+          </a>
+        </p>
+        <span>|</span>
+        <p>
+          Source code on{' '}
+          <a
+            href="https://github.com/hendraaagil/drawer"
+            className="text-blue-600 underline"
+            target="_blank"
+          >
+            GitHub
+          </a>
+        </p>
+      </footer>
     </div>
   )
 }
