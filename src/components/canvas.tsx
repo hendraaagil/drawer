@@ -1,12 +1,10 @@
 import { useRef, useEffect, useCallback } from 'react'
-import type { Images } from '../libs/types'
-import { triggerConfetti } from '../libs/confetti'
 import { drawingCache } from '../libs/cache'
-
-const baseUrl = 'https://api.drawer.hndr.xyz'
+import { triggerConfetti } from '../libs/confetti'
+import { apiBaseUrl } from '../libs/constant'
 
 interface CanvasProps {
-  selectedImage: Images
+  selectedImage: string
   isDrawing: boolean
   onDrawingComplete: () => void
   onDrawingProgress: (status: string) => void
@@ -22,7 +20,7 @@ export function Canvas({
   const animationRef = useRef<number | null>(null)
 
   const fetchAndAnimate = useCallback(
-    async (file: Images): Promise<void> => {
+    async (image: string): Promise<void> => {
       const canvas = canvasRef.current as HTMLCanvasElement
       if (!canvas) return
 
@@ -39,20 +37,20 @@ export function Canvas({
       let coordinates: number[][][]
       let colours: number[][]
 
-      const cachedData = await drawingCache.get(file)
+      const cachedData = await drawingCache.get(image)
       if (cachedData) {
         onDrawingProgress('📦 Loading from cache...')
         coordinates = cachedData.coordinates
         colours = cachedData.colours
       } else {
         onDrawingProgress('🌐 Fetching from server...')
-        const res = await fetch(`${baseUrl}/coordinates?file=${file}`)
+        const res = await fetch(`${apiBaseUrl}/coordinates?image=${image}`)
         const data = await res.json()
         coordinates = data.coordinates
         colours = data.colours
 
         // Cache the response for future use
-        await drawingCache.set(file, coordinates, colours)
+        await drawingCache.set(image, coordinates, colours)
       }
 
       onDrawingProgress('🖌️ Drawing in progress...')

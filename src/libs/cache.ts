@@ -1,16 +1,14 @@
-import type { Images } from './types'
-
 interface CacheData {
   coordinates: number[][][]
   colours: number[][]
   timestamp: number
-  file: Images
+  image: string
 }
 
 class DrawingCache {
-  private dbName = 'drawer-cache'
+  private dbName = 'image-cache'
   private version = 1
-  private storeName = 'drawings'
+  private storeName = 'images'
   private db: IDBDatabase | null = null
 
   async init(): Promise<void> {
@@ -27,7 +25,7 @@ class DrawingCache {
         const db = (event.target as IDBOpenDBRequest).result
         if (!db.objectStoreNames.contains(this.storeName)) {
           const store = db.createObjectStore(this.storeName, {
-            keyPath: 'file',
+            keyPath: 'image',
           })
           store.createIndex('timestamp', 'timestamp', { unique: false })
         }
@@ -35,13 +33,13 @@ class DrawingCache {
     })
   }
 
-  async get(file: Images): Promise<CacheData | null> {
+  async get(image: string): Promise<CacheData | null> {
     if (!this.db) await this.init()
 
     return new Promise((resolve, reject) => {
       const transaction = this.db!.transaction([this.storeName], 'readonly')
       const store = transaction.objectStore(this.storeName)
-      const request = store.get(file)
+      const request = store.get(image)
 
       request.onerror = () => reject(request.error)
       request.onsuccess = () => {
@@ -51,14 +49,14 @@ class DrawingCache {
   }
 
   async set(
-    file: Images,
+    image: string,
     coordinates: number[][][],
     colours: number[][],
   ): Promise<void> {
     if (!this.db) await this.init()
 
     const data: CacheData = {
-      file,
+      image,
       coordinates,
       colours,
       timestamp: Date.now(),
