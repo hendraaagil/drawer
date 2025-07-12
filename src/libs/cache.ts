@@ -1,4 +1,4 @@
-import type { Images } from './type'
+import type { Images } from './types'
 
 interface CacheData {
   coordinates: number[][][]
