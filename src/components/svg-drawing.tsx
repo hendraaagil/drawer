@@ -218,7 +218,7 @@ export function SvgDrawing({
     <div className="flex flex-col items-center overflow-auto px-4">
       <div
         ref={svgContainerRef}
-        className="mb-4 flex min-h-[32rem] w-full justify-center overflow-x-auto border border-slate-300 bg-white"
+        className="mb-4 flex min-h-64 w-full justify-center overflow-x-auto border border-slate-300 bg-white"
       />
 
       {svgContainerRef.current?.querySelector('svg') && !isDrawing && (
