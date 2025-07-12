@@ -218,21 +218,21 @@ export function SvgDrawing({
     <div className="flex flex-col items-center overflow-auto px-4">
       <div
         ref={svgContainerRef}
-        className="border border-slate-300 mb-4 w-full flex justify-center min-h-[32rem] bg-white overflow-x-auto"
+        className="mb-4 flex min-h-[32rem] w-full justify-center overflow-x-auto border border-slate-300 bg-white"
       />
 
       {svgContainerRef.current?.querySelector('svg') && !isDrawing && (
-        <div className="sticky top-0 left-0 z-10 bg-slate-100 pb-4 w-full">
-          <div className="flex flex-wrap gap-2 justify-center">
+        <div className="sticky top-0 left-0 z-10 w-full bg-slate-100 pb-4">
+          <div className="flex flex-wrap justify-center gap-2">
             <button
               onClick={downloadSVG}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+              className="rounded bg-blue-500 px-4 py-2 text-white transition-colors hover:bg-blue-600"
             >
               📥 Download SVG
             </button>
             <button
               onClick={downloadPNG}
-              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
+              className="rounded bg-green-500 px-4 py-2 text-white transition-colors hover:bg-green-600"
             >
               📥 Download PNG
             </button>

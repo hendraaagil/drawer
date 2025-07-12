@@ -145,7 +145,7 @@ export function Canvas({
       ref={canvasRef}
       width={512}
       height={512}
-      className="border border-slate-400 px-4 mb-4 mx-auto bg-white"
+      className="mx-auto mb-4 border border-slate-400 bg-white px-4"
     />
   )
 }

@@ -74,26 +74,26 @@ export function App() {
   }, [])
 
   return (
-    <div className="bg-slate-100 min-h-screen">
+    <div className="min-h-screen bg-slate-100">
       <main className="mx-auto max-w-5xl pt-8 pb-4">
-        <div className="text-center mb-4 px-4 sticky top-0 left-0 z-10 bg-slate-100 pb-4">
+        <div className="sticky top-0 left-0 z-10 mb-4 bg-slate-100 px-4 pb-4 text-center">
           {!isDrawing ? (
             <div className="mb-2">
               <label
                 htmlFor="imageSelect"
-                className="block text-lg font-medium mb-2"
+                className="mb-2 block text-lg font-medium"
               >
                 Choose an image:
               </label>
               {optionsError ? (
-                <div className="text-red-500 mb-2 text-sm">{optionsError}</div>
+                <div className="mb-2 text-sm text-red-500">{optionsError}</div>
               ) : null}
               <select
                 id="imageSelect"
                 value={selectedImage}
                 onChange={(e) => setSelectedImage(e.target.value as string)}
                 disabled={isLoadingOptions}
-                className="px-4 py-2 border border-slate-300 rounded-md bg-white disabled:bg-slate-100 disabled:text-slate-500"
+                className="rounded-md border border-slate-300 bg-white px-4 py-2 disabled:bg-slate-100 disabled:text-slate-500"
               >
                 {isLoadingOptions ? (
                   <option value="">Loading...</option>
@@ -108,13 +108,13 @@ export function App() {
               <button
                 onClick={handleStartDrawing}
                 disabled={isLoadingOptions || imageOptions.length === 0}
-                className="ml-2 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-slate-400 disabled:cursor-not-allowed"
+                className="ml-2 rounded-md bg-blue-500 px-6 py-2 text-white hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-slate-400"
               >
                 {isLoadingOptions ? 'Loading...' : 'Start Drawing'}
               </button>
             </div>
           ) : (
-            <div className="text-xl font-semibold text-center">
+            <div className="text-center text-xl font-semibold">
               {drawingStatus}
             </div>
           )}
@@ -136,7 +136,7 @@ export function App() {
         )}
       </main>
 
-      <footer className="flex max-w-5xl p-4 mx-auto justify-center text-center space-x-2 text-sm font-medium text-slate-500">
+      <footer className="mx-auto flex max-w-5xl justify-center space-x-2 p-4 text-center text-sm font-medium text-slate-500">
         <p>
           Images by{' '}
           <a
