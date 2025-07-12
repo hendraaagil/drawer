@@ -4,3 +4,9 @@
 @theme {
   --font-sans: 'Recursive Variable', sans-serif;
 }
+
+@layer base {
+  button {
+    @apply cursor-pointer;
+  }
+}
