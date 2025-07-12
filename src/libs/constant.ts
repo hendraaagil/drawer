@@ -1,2 +1,2 @@
-export const apiBaseUrl = 'http://localhost:3003'
+export const apiBaseUrl = 'https://api.drawer.hndr.xyz'
 export const cacheExpirationInHours = 24
